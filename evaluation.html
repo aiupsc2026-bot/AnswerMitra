@@ -1,738 +1,592 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>AnswerMitra — Evaluate Answer</title>
 
 <style>
-
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+*{box-sizing:border-box}
+body{
+margin:0;
+font-family:Arial,sans-serif;
+background:#f5f7fb;
+color:#172033;
 }
-
-body {
-    font-family: Arial, sans-serif;
-    background: #f5f7fb;
-    color: #172033;
+header{
+background:#172033;
+color:white;
+padding:18px 20px;
+font-size:25px;
+font-weight:800;
 }
-
-/* HEADER */
-
-header {
-    background: white;
-    padding: 18px 6%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid #e5e7eb;
+header span{color:#4da3ff}
+.container{
+max-width:850px;
+margin:25px auto;
+padding:0 16px 50px;
 }
-
-.logo {
-    font-size: 21px;
-    font-weight: bold;
+h1{margin-bottom:8px}
+.subtitle{color:#667085;margin-bottom:25px}
+.card{
+background:white;
+border-radius:16px;
+padding:20px;
+margin-bottom:18px;
+box-shadow:0 4px 18px rgba(0,0,0,.08);
 }
-
-.logo span {
-    color: #3856d6;
+label{
+display:block;
+font-weight:700;
+margin-bottom:8px;
 }
-
-.home-link {
-    text-decoration: none;
-    color: #3856d6;
-    font-weight: bold;
+select,input,textarea{
+width:100%;
+padding:13px;
+border:1px solid #ccd3df;
+border-radius:9px;
+font-size:16px;
+background:white;
 }
-
-/* MAIN */
-
-.container {
-    max-width: 900px;
-    margin: 45px auto;
-    padding: 20px;
+textarea{min-height:120px;resize:vertical}
+.field{margin-bottom:18px}
+.hidden{display:none}
+.info{
+background:#eef6ff;
+border-left:4px solid #1976d2;
+padding:13px;
+border-radius:8px;
+margin-top:10px;
 }
-
-.page-title {
-    text-align: center;
-    margin-bottom: 35px;
+.wordbox{
+background:#f0fff5;
+border:1px solid #8bd5a8;
+padding:15px;
+border-radius:10px;
+font-weight:700;
+font-size:17px;
 }
-
-.page-title h1 {
-    font-size: 38px;
-    margin-bottom: 12px;
+.upload{
+border:2px dashed #9aa7b8;
+padding:25px;
+text-align:center;
+border-radius:12px;
+background:#fafcff;
 }
-
-.page-title h1 span {
-    color: #3856d6;
+button{
+border:0;
+border-radius:10px;
+padding:15px 22px;
+font-size:17px;
+font-weight:800;
+cursor:pointer;
 }
-
-.page-title p {
-    color: #667085;
-    font-size: 17px;
-    line-height: 1.6;
+.reset{
+background:#eef1f5;
+color:#333;
 }
-
-/* FORM CARD */
-
-.form-card {
-    background: white;
-    border: 1px solid #e5e7eb;
-    border-radius: 16px;
-    padding: 30px;
-    box-shadow: 0 5px 25px rgba(0,0,0,0.05);
+.evaluate{
+width:100%;
+background:#172033;
+color:white;
+font-size:19px;
+margin-top:5px;
 }
-
-.form-section {
-    margin-bottom: 28px;
+.evaluate:hover{opacity:.9}
+.preview{
+margin-top:12px;
+font-size:14px;
+color:#475467;
 }
-
-.form-section h2 {
-    font-size: 20px;
-    margin-bottom: 18px;
+.message{
+display:none;
+background:#ecfdf3;
+border:1px solid #86efac;
+padding:18px;
+border-radius:12px;
+margin-top:18px;
+line-height:1.6;
 }
-
-.form-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 18px;
+.badge{
+display:inline-block;
+padding:5px 9px;
+border-radius:20px;
+background:#e8f1ff;
+color:#135db5;
+font-size:13px;
+font-weight:700;
 }
-
-.field {
-    display: flex;
-    flex-direction: column;
+footer{
+text-align:center;
+padding:25px;
+color:#667085;
+font-size:13px;
 }
-
-.field label {
-    font-weight: bold;
-    margin-bottom: 8px;
-    font-size: 14px;
-}
-
-.field select,
-.field input,
-.field textarea {
-    width: 100%;
-    padding: 13px;
-    border: 1px solid #d0d5dd;
-    border-radius: 8px;
-    font-size: 15px;
-    background: white;
-    color: #172033;
-}
-
-.field textarea {
-    min-height: 130px;
-    resize: vertical;
-    line-height: 1.5;
-}
-
-.field select:focus,
-.field input:focus,
-.field textarea:focus {
-    outline: none;
-    border-color: #3856d6;
-}
-
-/* OPTIONAL */
-
-#optionalField {
-    display: none;
-}
-
-/* UPLOAD */
-
-.upload-box {
-    border: 2px dashed #b8c1d9;
-    border-radius: 12px;
-    padding: 30px 20px;
-    text-align: center;
-    background: #fafbff;
-}
-
-.upload-icon {
-    font-size: 42px;
-    margin-bottom: 12px;
-}
-
-.upload-box h3 {
-    margin-bottom: 8px;
-}
-
-.upload-box p {
-    color: #667085;
-    margin-bottom: 18px;
-    font-size: 14px;
-}
-
-.upload-button {
-    display: inline-block;
-    padding: 12px 22px;
-    background: #172033;
-    color: white;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: bold;
-}
-
-#answerFiles {
-    display: none;
-}
-
-.file-list {
-    margin-top: 18px;
-    text-align: left;
-}
-
-.file-item {
-    background: #f1f4ff;
-    padding: 10px 12px;
-    border-radius: 7px;
-    margin-top: 7px;
-    font-size: 14px;
-}
-
-/* ANALYSE BUTTON */
-
-.analyse-button {
-    width: 100%;
-    border: none;
-    padding: 17px;
-    background: #3856d6;
-    color: white;
-    border-radius: 9px;
-    font-size: 17px;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-.analyse-button:hover {
-    opacity: 0.92;
-}
-
-/* MESSAGE */
-
-.message {
-    display: none;
-    margin-top: 20px;
-    padding: 16px;
-    border-radius: 9px;
-    background: #eef2ff;
-    color: #172033;
-    line-height: 1.5;
-}
-
-/* FOOTER */
-
-footer {
-    margin-top: 60px;
-    background: white;
-    text-align: center;
-    padding: 30px;
-    color: #667085;
-    line-height: 1.8;
-}
-
-/* MOBILE */
-
-@media(max-width:700px) {
-
-    .container {
-        margin: 25px auto;
-        padding: 15px;
-    }
-
-    .page-title h1 {
-        font-size: 30px;
-    }
-
-    .form-card {
-        padding: 20px;
-    }
-
-    .form-grid {
-        grid-template-columns: 1fr;
-    }
-
-    header {
-        padding: 16px 5%;
-    }
-
-}
-
 </style>
-
 </head>
 
 <body>
 
-<!-- HEADER -->
-
 <header>
-
-<div class="logo">
 Answer<span>Mitra</span>
-</div>
-
-<a href="index.html" class="home-link">
-← Home
-</a>
-
 </header>
 
+<div class="container">
 
-<!-- MAIN -->
-
-<main class="container">
-
-<div class="page-title">
-
-<h1>
-Evaluate Your <span>Answer</span>
-</h1>
-
-<p>
-Upload your handwritten UPSC Mains answer and prepare it
-for detailed AI-assisted evaluation.
+<h1>Prepare Your Evaluation</h1>
+<p class="subtitle">
+Configure your examination and upload your answer for AI-assisted evaluation.
 </p>
 
-</div>
-
-
-<div class="form-card">
-
-
-<!-- EXAM -->
-
-<div class="form-section">
-
-<h2>1. Examination Details</h2>
-
-<div class="form-grid">
+<div class="card">
 
 <div class="field">
-
-<label for="exam">
-Examination
-</label>
-
+<label>1. Examination</label>
 <select id="exam">
-
-<option value="">
-Select examination
-</option>
-
-<option>
-UPSC Civil Services Examination
-</option>
-
-<option>
-State PSC
-</option>
-
-<option>
-Other Examination
-</option>
-
+<option value="">Select Examination</option>
+<option value="upsc">UPSC</option>
+<option value="state">State PSC</option>
 </select>
+</div>
+
+<div id="stateFields" class="hidden">
+
+<div class="field">
+<label>State</label>
+<select id="state">
+<option value="">Select State</option>
+<option>Andhra Pradesh</option>
+<option>Arunachal Pradesh</option>
+<option>Assam</option>
+<option>Bihar</option>
+<option>Chhattisgarh</option>
+<option>Goa</option>
+<option>Gujarat</option>
+<option>Haryana</option>
+<option>Himachal Pradesh</option>
+<option>Jharkhand</option>
+<option>Karnataka</option>
+<option>Kerala</option>
+<option>Madhya Pradesh</option>
+<option>Maharashtra</option>
+<option>Manipur</option>
+<option>Meghalaya</option>
+<option>Mizoram</option>
+<option>Nagaland</option>
+<option>Odisha</option>
+<option>Punjab</option>
+<option>Rajasthan</option>
+<option>Sikkim</option>
+<option>Tamil Nadu</option>
+<option>Telangana</option>
+<option>Tripura</option>
+<option>Uttar Pradesh</option>
+<option>Uttarakhand</option>
+<option>West Bengal</option>
+</select>
+</div>
+
+<div class="field">
+<label>Commission</label>
+<input id="commission" placeholder="Commission will be configured from official sources">
+</div>
+
+<div class="info">
+State PSC examination patterns will be connected to the respective official notification, syllabus and scheme. AnswerMitra will not assume that every State PSC follows the UPSC pattern.
+</div>
 
 </div>
 
+<div id="stageField" class="field hidden">
+<label>2. Stage</label>
+<select id="stage">
+<option value="">Select Stage</option>
+<option value="prelims">Prelims</option>
+<option value="mains">Mains</option>
+</select>
+</div>
 
-<div class="field">
-
-<label for="paper">
-Paper
-</label>
-
+<div id="paperField" class="field hidden">
+<label>3. Paper / Component</label>
 <select id="paper">
-
-<option value="">
-Select paper
-</option>
-
-<option>GS Paper I</option>
-<option>GS Paper II</option>
-<option>GS Paper III</option>
-<option>GS Paper IV</option>
-<option>Essay</option>
-<option>Optional Subject</option>
-
+<option value="">Select Paper / Component</option>
 </select>
-
 </div>
 
-</div>
-
-</div>
-
-
-<!-- OPTIONAL SUBJECT -->
-
-<div class="form-section" id="optionalField">
-
-<div class="field">
-
-<label for="optional">
-Optional Subject
-</label>
-
+<div id="optionalField" class="field hidden">
+<label>4. Optional Subject</label>
 <select id="optional">
-
-<option value="">
-Select optional subject
-</option>
-
+<option value="">Select Optional Subject</option>
 <option>Anthropology</option>
-<option>Geography</option>
-<option>History</option>
-<option>Political Science & International Relations</option>
-<option>Sociology</option>
-<option>Public Administration</option>
-<option>Philosophy</option>
-<option>Psychology</option>
-<option>Economics</option>
+<option>Botany</option>
+<option>Chemistry</option>
 <option>Commerce & Accountancy</option>
+<option>Economics</option>
+<option>Electrical Engineering</option>
+<option>Geography</option>
+<option>Geology</option>
+<option>History</option>
 <option>Law</option>
 <option>Management</option>
 <option>Mathematics</option>
-<option>Physics</option>
-<option>Chemistry</option>
-<option>Botany</option>
-<option>Zoology</option>
+<option>Mechanical Engineering</option>
 <option>Medical Science</option>
+<option>Philosophy</option>
+<option>Physics</option>
+<option>Political Science & International Relations</option>
+<option>Psychology</option>
+<option>Public Administration</option>
+<option>Sociology</option>
+<option>Statistics</option>
+<option>Zoology</option>
 <option>Telugu Literature</option>
 <option>English Literature</option>
-
 </select>
-
 </div>
 
-</div>
-
-
-<!-- QUESTION -->
-
-<div class="form-section">
-
-<h2>2. Question Details</h2>
+<div id="questionFields" class="hidden">
 
 <div class="field">
-
-<label for="question">
-Question
-</label>
-
-<textarea id="question"
-placeholder="Paste or type the UPSC question here..."></textarea>
-
+<label>5. Question</label>
+<textarea id="question" placeholder="Enter or paste the exact question here"></textarea>
 </div>
 
-<br>
-
-<div class="form-grid">
+<div class="field">
+<label>6. Question Type</label>
+<select id="questionType">
+<option value="">Select Question Type</option>
+</select>
+</div>
 
 <div class="field">
-
-<label for="marks">
-Maximum Marks
-</label>
-
+<label>7. Marks for this Question</label>
 <select id="marks">
-
-<option>10 Marks</option>
-<option>15 Marks</option>
-<option>20 Marks</option>
-<option>30 Marks</option>
-<option>125 Marks — Essay</option>
-
+<option value="">Select marks</option>
 </select>
-
 </div>
-
 
 <div class="field">
-
-<label for="wordLimit">
-Word Limit
-</label>
-
-<select id="wordLimit">
-
-<option>150 Words</option>
-<option>250 Words</option>
-<option>500 Words</option>
-<option>1000–1200 Words</option>
-
-</select>
-
+<label>8. Required Response Length</label>
+<div class="wordbox" id="wordLimit">
+Select question type and marks to automatically determine the applicable response requirement.
 </div>
-
 </div>
-
-</div>
-
-
-<!-- LANGUAGE -->
-
-<div class="form-section">
-
-<h2>3. Language & Personalisation</h2>
-
-<div class="form-grid">
 
 <div class="field">
-
-<label for="interfaceLanguage">
-Interface Language
-</label>
-
-<select id="interfaceLanguage">
-
+<label>9. Answer Language</label>
+<select id="language">
+<option value="">Select Answer Language</option>
 <option>English</option>
-<option>తెలుగు</option>
-<option>हिन्दी</option>
-<option>தமிழ்</option>
-<option>ಕನ್ನಡ</option>
-
+<option>Hindi</option>
+<option>Telugu</option>
+<option>Tamil</option>
+<option>Kannada</option>
+<option>Malayalam</option>
+<option>Marathi</option>
+<option>Bengali</option>
+<option>Gujarati</option>
+<option>Odia</option>
+<option>Punjabi</option>
+<option>Urdu</option>
 </select>
-
 </div>
-
 
 <div class="field">
-
-<label for="answerLanguage">
-Answer Language
-</label>
-
-<select id="answerLanguage">
-
-<option>English</option>
-<option>తెలుగు</option>
-<option>हिन्दी</option>
-<option>தமிழ்</option>
-<option>ಕನ್ನಡ</option>
-
-</select>
-
-</div>
-
-
-<div class="field">
-
-<label for="state">
-State / Region
-</label>
-
-<select id="state">
-
-<option>Andhra Pradesh</option>
-<option>Telangana</option>
-<option>Karnataka</option>
-<option>Tamil Nadu</option>
-<option>Kerala</option>
-<option>Maharashtra</option>
-<option>Delhi</option>
-<option>Uttar Pradesh</option>
-<option>Bihar</option>
-<option>West Bengal</option>
-<option>Other</option>
-
-</select>
-
-</div>
-
-</div>
-
-</div>
-
-
-<!-- UPLOAD -->
-
-<div class="form-section">
-
-<h2>4. Upload Handwritten Answer</h2>
-
-<div class="upload-box">
-
-<div class="upload-icon">
-📄
-</div>
-
-<h3>
-Upload your answer pages
-</h3>
-
-<p>
-Upload clear photographs or scanned pages.
-You can select multiple pages.
-</p>
-
-<label for="answerFiles" class="upload-button">
-Choose Answer Pages
-</label>
-
-<input
-type="file"
-id="answerFiles"
-accept="image/*,.pdf"
+<label>10. Upload Your Answer</label>
+<div class="upload">
+<input type="file" id="answerFile"
+accept="image/*,application/pdf"
 multiple
->
-
-<div id="fileList" class="file-list"></div>
-
+capture="environment">
+<p>Upload handwritten answer photos or PDF</p>
+<div class="preview" id="filePreview"></div>
+</div>
 </div>
 
-</div>
-
-
-<!-- BUTTON -->
-
-<button
-class="analyse-button"
-onclick="analyseAnswer()">
-
-Analyse My Answer
-
+<button class="evaluate" id="evaluateBtn">
+🤖 Evaluate My Answer
 </button>
 
+<button class="reset" id="resetBtn" style="width:100%;margin-top:10px">
+Reset
+</button>
 
-<div id="message" class="message"></div>
-
+<div class="message" id="message"></div>
 
 </div>
 
-</main>
-
-
-<!-- FOOTER -->
+</div>
 
 <footer>
-
-<strong>
-AnswerMitra
-</strong>
-
-<br>
-
-Your answer. Your ideas. Your improvement.
-
-<br><br>
-
-AI-assisted evaluation — not official UPSC evaluation.
-
-<br>
-
-© 2026 AnswerMitra
-
+AnswerMitra © 2026 — AI-assisted UPSC & State PSC answer coaching
 </footer>
-
 
 <script>
 
-/* OPTIONAL SUBJECT */
+const exam=document.getElementById("exam");
+const stateFields=document.getElementById("stateFields");
+const stageField=document.getElementById("stageField");
+const stage=document.getElementById("stage");
+const paperField=document.getElementById("paperField");
+const paper=document.getElementById("paper");
+const optionalField=document.getElementById("optionalField");
+const questionFields=document.getElementById("questionFields");
+const questionType=document.getElementById("questionType");
+const marks=document.getElementById("marks");
+const wordLimit=document.getElementById("wordLimit");
+const answerFile=document.getElementById("answerFile");
+const filePreview=document.getElementById("filePreview");
+const message=document.getElementById("message");
 
-document.getElementById("paper").addEventListener("change", function() {
+exam.addEventListener("change",function(){
 
-    const optionalField =
-        document.getElementById("optionalField");
+stateFields.classList.toggle("hidden",this.value!=="state");
+stageField.classList.toggle("hidden",!this.value);
 
-    if (this.value === "Optional Subject") {
-
-        optionalField.style.display = "block";
-
-    } else {
-
-        optionalField.style.display = "none";
-
-    }
-
-});
-
-
-/* FILE UPLOAD */
-
-document.getElementById("answerFiles").addEventListener("change", function() {
-
-    const fileList =
-        document.getElementById("fileList");
-
-    fileList.innerHTML = "";
-
-    if (this.files.length === 0) {
-        return;
-    }
-
-    for (let i = 0; i < this.files.length; i++) {
-
-        const item =
-            document.createElement("div");
-
-        item.className = "file-item";
-
-        item.textContent =
-            "📄 " + this.files[i].name;
-
-        fileList.appendChild(item);
-
-    }
+stage.value="";
+paper.innerHTML='<option value="">Select Paper / Component</option>';
+optionalField.classList.add("hidden");
+questionFields.classList.add("hidden");
 
 });
 
+stage.addEventListener("change",function(){
 
-/* ANALYSE BUTTON */
+paper.innerHTML='<option value="">Select Paper / Component</option>';
+optionalField.classList.add("hidden");
+questionFields.classList.add("hidden");
 
-function analyseAnswer() {
+if(!this.value)return;
 
-    const question =
-        document.getElementById("question").value.trim();
+paperField.classList.remove("hidden");
 
-    const files =
-        document.getElementById("answerFiles").files;
+if(exam.value==="upsc" && this.value==="mains"){
 
-    const message =
-        document.getElementById("message");
+paper.innerHTML+=`
+<option value="gs1">GS Paper I</option>
+<option value="gs2">GS Paper II</option>
+<option value="gs3">GS Paper III</option>
+<option value="gs4">GS Paper IV</option>
+<option value="essay">Essay</option>
+<option value="optional">Optional Subject</option>
+`;
 
+}else if(exam.value==="upsc" && this.value==="prelims"){
 
-    if (question === "") {
+paper.innerHTML+=`
+<option value="gs1prelims">General Studies Paper I</option>
+<option value="csat">CSAT / General Studies Paper II</option>
+`;
 
-        message.style.display = "block";
+}else if(exam.value==="state"){
 
-        message.innerHTML =
-            "⚠️ Please enter or paste the question before starting the evaluation.";
-
-        return;
-
-    }
-
-
-    if (files.length === 0) {
-
-        message.style.display = "block";
-
-        message.innerHTML =
-            "⚠️ Please upload at least one handwritten answer page.";
-
-        return;
-
-    }
-
-
-    message.style.display = "block";
-
-    message.innerHTML =
-        "✅ Your answer is ready for AI-assisted evaluation.<br><br>" +
-        "The next version of AnswerMitra will analyse your handwriting, " +
-        "ideas, content, structure, examples, grammar, presentation, " +
-        "missing dimensions and answer quality.";
+paper.innerHTML+=`
+<option value="official">Official State PSC Paper / Component</option>
+`;
 
 }
+
+});
+
+paper.addEventListener("change",function(){
+
+optionalField.classList.add("hidden");
+questionFields.classList.add("hidden");
+
+if(!this.value)return;
+
+if(this.value==="optional"){
+optionalField.classList.remove("hidden");
+}
+
+questionFields.classList.remove("hidden");
+
+setupQuestionTypes();
+
+});
+
+document.getElementById("optional").addEventListener("change",function(){
+setupQuestionTypes();
+});
+
+questionType.addEventListener("change",updateMarks);
+
+marks.addEventListener("change",updateWordLimit);
+
+function setupQuestionTypes(){
+
+questionType.innerHTML='<option value="">Select Question Type</option>';
+
+if(exam.value==="upsc" && stage.value==="prelims"){
+
+questionType.innerHTML+=`
+<option value="mcq">Objective MCQ</option>
+`;
+
+}else if(paper.value==="essay"){
+
+questionType.innerHTML+=`
+<option value="essay">Essay</option>
+`;
+
+}else{
+
+questionType.innerHTML+=`
+<option value="gs10">10-mark descriptive question</option>
+<option value="gs15">15-mark descriptive question</option>
+`;
+
+if(paper.value==="optional"){
+questionType.innerHTML+=`
+<option value="optional20">20-mark optional question</option>
+`;
+}
+
+}
+
+marks.innerHTML='<option value="">Select marks</option>';
+
+wordLimit.textContent=
+"Select question type and marks to automatically determine the applicable response requirement.";
+
+}
+
+function updateMarks(){
+
+marks.innerHTML='<option value="">Select marks</option>';
+
+if(questionType.value==="mcq"){
+marks.innerHTML+='<option value="2">Objective question</option>';
+}
+else if(questionType.value==="gs10"){
+marks.innerHTML+='<option value="10">10 marks</option>';
+}
+else if(questionType.value==="gs15"){
+marks.innerHTML+='<option value="15">15 marks</option>';
+}
+else if(questionType.value==="essay"){
+marks.innerHTML+='<option value="250">250 marks</option>';
+}
+else if(questionType.value==="optional20"){
+marks.innerHTML+='<option value="20">20 marks</option>';
+}
+
+updateWordLimit();
+
+}
+
+function updateWordLimit(){
+
+const t=questionType.value;
+const m=marks.value;
+
+if(t==="gs10" && m==="10"){
+wordLimit.innerHTML=
+"📌 <strong>150 words</strong> — UPSC Mains 10-mark descriptive response";
+}
+else if(t==="gs15" && m==="15"){
+wordLimit.innerHTML=
+"📌 <strong>250 words</strong> — UPSC Mains 15-mark descriptive response";
+}
+else if(t==="essay" && m==="250"){
+wordLimit.innerHTML=
+"📌 <strong>1000–1200 words</strong> — UPSC Essay paper";
+}
+else if(t==="mcq"){
+wordLimit.innerHTML=
+"📌 <strong>Objective MCQ</strong> — No descriptive word limit";
+}
+else if(t==="optional20"){
+wordLimit.innerHTML=
+"📌 <strong>Subject-specific requirement</strong> — AnswerMitra will use the applicable official optional-paper configuration.";
+}
+else{
+wordLimit.textContent=
+"Select question type and marks to automatically determine the applicable response requirement.";
+}
+
+}
+
+answerFile.addEventListener("change",function(){
+
+if(!this.files.length){
+filePreview.textContent="";
+return;
+}
+
+filePreview.innerHTML=
+"📎 <strong>"+this.files.length+
+"</strong> file(s) selected.";
+
+});
+
+document.getElementById("evaluateBtn").addEventListener("click",function(){
+
+const required=[
+["exam","Examination"],
+["stage","Stage"],
+["paper","Paper / Component"],
+["question","Question"],
+["questionType","Question Type"],
+["marks","Marks"],
+["language","Answer Language"]
+];
+
+for(const item of required){
+
+const el=document.getElementById(item[0]);
+
+if(!el.value.trim()){
+alert("Please select/enter: "+item[1]);
+el.focus();
+return;
+}
+
+}
+
+if(!answerFile.files.length){
+alert("Please upload your handwritten answer.");
+return;
+}
+
+message.style.display="block";
+
+message.innerHTML=`
+<strong>✅ Your answer has been received.</strong><br><br>
+Your uploaded answer is ready for the AnswerMitra AI evaluation pipeline.<br><br>
+
+<span class="badge">AI-assisted evaluation</span>
+
+<p>
+The full AnswerMitra engine will analyse handwriting, meaning,
+question demand, content, arguments, examples, structure,
+introduction, conclusion, grammar, presentation, missing dimensions
+and answer quality.
+</p>
+
+<p>
+It will also provide detailed appreciation, corrections,
+evaluator remarks, estimated marks and personalised improvement
+guidance.
+</p>
+
+<p>
+<strong>Important:</strong> Any score generated by AnswerMitra will be
+an AI-assisted estimate, not an official UPSC or State PSC mark.
+</p>
+`;
+
+message.scrollIntoView({behavior:"smooth"});
+
+});
+
+document.getElementById("resetBtn").addEventListener("click",function(){
+
+location.reload();
+
+});
 
 </script>
 
 </body>
-
 </html>
