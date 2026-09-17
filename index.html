@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>UPSC AI Answer Coach</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f5f7fb;
+    color: #172033;
+}
+
+/* HEADER */
+
+header {
+    background: white;
+    padding: 18px 6%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.logo {
+    font-size: 21px;
+    font-weight: bold;
+}
+
+.logo span {
+    color: #3856d6;
+}
+
+nav a {
+    margin-left: 20px;
+    text-decoration: none;
+    color: #333;
+}
+
+/* HERO */
+
+.hero {
+    text-align: center;
+    padding: 80px 20px 65px;
+    max-width: 950px;
+    margin: auto;
+}
+
+.badge {
+    display: inline-block;
+    padding: 8px 15px;
+    background: #e9edff;
+    color: #3856d6;
+    border-radius: 30px;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+.hero h1 {
+    font-size: 48px;
+    line-height: 1.15;
+    margin-bottom: 22px;
+}
+
+.hero h1 span {
+    color: #3856d6;
+}
+
+.hero p {
+    font-size: 19px;
+    line-height: 1.7;
+    color: #667085;
+    max-width: 750px;
+    margin: auto auto 30px;
+}
+
+.start-button {
+    display: inline-block;
+    padding: 16px 32px;
+    background: #172033;
+    color: white;
+    text-decoration: none;
+    border-radius: 9px;
+    font-size: 17px;
+    font-weight: bold;
+}
+
+/* FEATURES */
+
+.features-section {
+    max-width: 1100px;
+    margin: auto;
+    padding: 20px;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.section-title h2 {
+    font-size: 32px;
+    margin-bottom: 10px;
+}
+
+.section-title p {
+    color: #667085;
+}
+
+.features {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.card {
+    background: white;
+    padding: 28px;
+    border-radius: 14px;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.04);
+}
+
+.icon {
+    font-size: 32px;
+    margin-bottom: 15px;
+}
+
+.card h3 {
+    margin-bottom: 10px;
+}
+
+.card p {
+    color: #667085;
+    line-height: 1.6;
+}
+
+/* USP */
+
+.usp {
+    max-width: 900px;
+    margin: 70px auto;
+    padding: 45px 25px;
+    text-align: center;
+    background: white;
+    border-radius: 16px;
+}
+
+.usp h2 {
+    font-size: 30px;
+    margin-bottom: 18px;
+}
+
+.usp p {
+    color: #667085;
+    font-size: 18px;
+    line-height: 1.7;
+}
+
+/* PROCESS */
+
+.process {
+    max-width: 1050px;
+    margin: 70px auto;
+    padding: 20px;
+}
+
+.process-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+}
+
+.process-card {
+    background: white;
+    border: 1px solid #e5e7eb;
+    padding: 22px;
+    border-radius: 12px;
+    text-align: center;
+}
+
+.number {
+    font-size: 25px;
+    font-weight: bold;
+    color: #3856d6;
+    margin-bottom: 10px;
+}
+
+/* FOOTER */
+
+footer {
+    margin-top: 60px;
+    background: white;
+    text-align: center;
+    padding: 30px;
+    color: #667085;
+    line-height: 1.8;
+}
+
+/* MOBILE */
+
+@media(max-width:800px) {
+
+    .hero h1 {
+        font-size: 36px;
+    }
+
+    .features {
+        grid-template-columns: 1fr;
+    }
+
+    .process-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    nav {
+        display: none;
+    }
+}
+
+@media(max-width:500px) {
+
+    .process-grid {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- HEADER -->
+
+<header>
+
+<div class="logo">
+UPSC <span>AI</span> Answer Coach
+</div>
+
+<nav>
+
+<a href="#">Home</a>
+
+<a href="#features">Features</a>
+
+<a href="#process">How It Works</a>
+
+</nav>
+
+</header>
+
+
+
+<!-- HERO -->
+
+<section class="hero">
+
+<div class="badge">
+AI-Powered UPSC Mains Answer Coaching
+</div>
+
+<h1>
+
+Write Better UPSC Mains Answers
+
+<br>
+
+<span>Understand. Improve. Grow.</span>
+
+</h1>
+
+<p>
+
+Upload your handwritten answer and receive
+detailed AI-assisted analysis of your ideas,
+content, structure, grammar, examples,
+presentation and UPSC perspective.
+
+</p>
+
+<a href="#process" class="start-button">
+
+Start Evaluation
+
+</a>
+
+</section>
+
+
+
+<!-- FEATURES -->
+
+<section class="features-section" id="features">
+
+<div class="section-title">
+
+<h2>
+What Your AI Coach Will Do
+</h2>
+
+<p>
+More than checking keywords.
+</p>
+
+</div>
+
+
+<div class="features">
+
+
+<div class="card">
+
+<div class="icon">
+✍️
+</div>
+
+<h3>
+Handwriting Analysis
+</h3>
+
+<p>
+
+Read handwritten answers from
+photographs or scanned pages,
+including multiple pages.
+
+</p>
+
+</div>
+
+
+
+<div class="card">
+
+<div class="icon">
+⭐
+</div>
+
+<h3>
+Detailed Appreciation
+</h3>
+
+<p>
+
+Identify your strongest arguments,
+good examples, useful quotes,
+concepts and effective presentation.
+
+</p>
+
+</div>
+
+
+
+<div class="card">
+
+<div class="icon">
+📝
+</div>
+
+<h3>
+On-Page Corrections
+</h3>
+
+<p>
+
+Grammar, spelling, terminology and
+sentence-formation corrections can
+appear beside the relevant text.
+
+</p>
+
+</div>
+
+
+
+<div class="card">
+
+<div class="icon">
+🧠
+</div>
+
+<h3>
+Meaning-Based Evaluation
+</h3>
+
+<p>
+
+Understand the idea behind your
+argument instead of relying only
+on predefined keywords.
+
+</p>
+
+</div>
+
+
+
+<div class="card">
+
+<div class="icon">
+🔍
+</div>
+
+<h3>
+What You Missed
+</h3>
+
+<p>
+
+Identify important dimensions,
+arguments, examples and value
+addition that could strengthen
+your answer.
+
+</p>
+
+</div>
+
+
+
+<div class="card">
+
+<div class="icon">
+💡
+</div>
+
+<h3>
+How To Improve
+</h3>
+
+<p>
+
+Learn how your own arguments
+can be developed into stronger
+UPSC-style points.
+
+</p>
+
+</div>
+
+
+
+<div class="card">
+
+<div class="icon">
+📊
+</div>
+
+<h3>
+Detailed Marks Analysis
+</h3>
+
+<p>
+
+Receive an estimated score with
+separate analysis of content,
+structure, analysis and presentation.
+
+</p>
+
+</div>
+
+
+
+<div class="card">
+
+<div class="icon">
+📚
+</div>
+
+<h3>
+Examples & Value Addition
+</h3>
+
+<p>
+
+Discover relevant examples,
+constitutional provisions, reports,
+committees and other value additions.
+
+</p>
+
+</div>
+
+
+
+<div class="card">
+
+<div class="icon">
+🎥
+</div>
+
+<h3>
+Personalised Video Lesson
+</h3>
+
+<p>
+
+Eventually receive a 7–10 minute
+answer-specific explanation in
+your preferred language.
+
+</p>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+
+<!-- USP -->
+
+<section class="usp">
+
+<h2>
+
+Your Ideas Matter — Not Just Keywords
+
+</h2>
+
+<p>
+
+The goal is to understand what an
+aspirant actually communicates,
+recognise good thinking, identify
+areas for improvement and teach
+the student how to write a stronger
+answer next time.
+
+</p>
+
+</section>
+
+
+
+<!-- PROCESS -->
+
+<section class="process" id="process">
+
+<div class="section-title">
+
+<h2>
+How It Will Work
+</h2>
+
+<p>
+From handwritten answer to personalised coaching
+</p>
+
+</div>
+
+
+<div class="process-grid">
+
+
+<div class="process-card">
+
+<div class="number">
+01
+</div>
+
+<h3>
+Select Question
+</h3>
+
+<p>
+Choose UPSC paper,
+question and marks.
+</p>
+
+</div>
+
+
+<div class="process-card">
+
+<div class="number">
+02
+</div>
+
+<h3>
+Upload Answer
+</h3>
+
+<p>
+Take a photo or upload
+your handwritten answer.
+</p>
+
+</div>
+
+
+<div class="process-card">
+
+<div class="number">
+03
+</div>
+
+<h3>
+AI Evaluation
+</h3>
+
+<p>
+Analyse content,
+language, structure and ideas.
+</p>
+
+</div>
+
+
+<div class="process-card">
+
+<div class="number">
+04
+</div>
+
+<h3>
+Improve
+</h3>
+
+<p>
+See corrections, appreciation,
+missing points and improvements.
+</p>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+
+<!-- FOOTER -->
+
+<footer>
+
+<strong>
+UPSC AI Answer Coach
+</strong>
+
+<br>
+
+Your answer. Your ideas. Your improvement.
+
+<br><br>
+
+AI-assisted evaluation — not official UPSC evaluation.
+
+<br>
+
+© 2026 UPSC AI Answer Coach
+
+</footer>
+
+
+</body>
+
+</html>
