@@ -2,125 +2,274 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AnswerMitra — Evaluate Answer</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>AnswerMitra — AI Answer Evaluation</title>
 
 <style>
 *{box-sizing:border-box}
 body{
-margin:0;
-font-family:Arial,sans-serif;
-background:#f5f7fb;
-color:#172033;
+ margin:0;
+ font-family:Arial,Helvetica,sans-serif;
+ background:#f3f6fb;
+ color:#172033;
+ line-height:1.55;
 }
 header{
-background:#172033;
-color:white;
-padding:18px 20px;
-font-size:25px;
-font-weight:800;
+ background:linear-gradient(135deg,#062b67,#1261c9);
+ color:white;
+ padding:22px 18px;
+ text-align:center;
 }
-header span{color:#4da3ff}
+.logo{
+ display:inline-block;
+ font-size:42px;
+ font-weight:900;
+ letter-spacing:-2px;
+}
+.logo span{color:#ff9d1b}
+.tagline{font-size:13px;letter-spacing:2px;margin-top:2px}
+.hero{
+ background:white;
+ padding:35px 18px;
+ text-align:center;
+ border-bottom:1px solid #dbe3ef;
+}
+.hero .bigmark{
+ font-size:78px;
+ font-weight:900;
+ color:#073b82;
+ line-height:1;
+}
+.hero .bigmark span{color:#1671df}
+.hero h1{margin:12px 0 4px;font-size:30px;color:#063773}
+.hero p{margin:5px auto;max-width:760px}
+.ai-row{
+ display:flex;
+ flex-wrap:wrap;
+ gap:10px;
+ justify-content:center;
+ margin:22px auto;
+}
+.ai{
+ padding:10px 16px;
+ border:1px solid #d7e0ec;
+ border-radius:12px;
+ background:#f8fbff;
+ font-weight:bold;
+}
 .container{
-max-width:850px;
-margin:25px auto;
-padding:0 16px 50px;
+ max-width:1100px;
+ margin:25px auto;
+ padding:0 15px;
 }
-h1{margin-bottom:8px}
-.subtitle{color:#667085;margin-bottom:25px}
 .card{
-background:white;
-border-radius:16px;
-padding:20px;
-margin-bottom:18px;
-box-shadow:0 4px 18px rgba(0,0,0,.08);
+ background:white;
+ border-radius:16px;
+ padding:22px;
+ margin-bottom:20px;
+ box-shadow:0 5px 20px rgba(20,45,80,.08);
+ border:1px solid #e1e8f2;
+}
+.card h2{
+ margin-top:0;
+ color:#073d82;
+ font-size:21px;
+}
+.grid{
+ display:grid;
+ grid-template-columns:repeat(2,minmax(0,1fr));
+ gap:15px;
 }
 label{
-display:block;
-font-weight:700;
-margin-bottom:8px;
+ display:block;
+ font-weight:bold;
+ margin-bottom:6px;
 }
-select,input,textarea{
-width:100%;
-padding:13px;
-border:1px solid #ccd3df;
-border-radius:9px;
-font-size:16px;
-background:white;
+input,select,textarea{
+ width:100%;
+ padding:12px;
+ border:1px solid #c9d5e5;
+ border-radius:10px;
+ font-size:15px;
+ background:white;
 }
 textarea{min-height:120px;resize:vertical}
-.field{margin-bottom:18px}
+.button{
+ border:0;
+ border-radius:11px;
+ padding:13px 20px;
+ font-size:16px;
+ font-weight:bold;
+ cursor:pointer;
+}
+.primary{background:#073d82;color:white}
+.green{background:#087f55;color:white}
+.orange{background:#ef8d19;color:white}
+.light{background:#edf2f8;color:#172033}
+.actions{
+ display:flex;
+ flex-wrap:wrap;
+ gap:12px;
+ margin-top:15px;
+}
 .hidden{display:none}
-.info{
-background:#eef6ff;
-border-left:4px solid #1976d2;
-padding:13px;
-border-radius:8px;
-margin-top:10px;
+
+.score{
+ display:flex;
+ justify-content:center;
+ align-items:center;
+ width:150px;
+ height:150px;
+ border-radius:50%;
+ border:10px solid #1877c9;
+ margin:15px auto;
+ font-size:38px;
+ font-weight:900;
+ color:#073d82;
+ background:white;
 }
-.wordbox{
-background:#f0fff5;
-border:1px solid #8bd5a8;
-padding:15px;
-border-radius:10px;
-font-weight:700;
-font-size:17px;
+.notice{
+ background:#fff7df;
+ border:1px solid #f1d17a;
+ border-radius:10px;
+ padding:12px;
 }
-.upload{
-border:2px dashed #9aa7b8;
-padding:25px;
-text-align:center;
-border-radius:12px;
-background:#fafcff;
+.success{
+ background:#eafaf2;
+ border:1px solid #a8e3c4;
+ border-radius:10px;
+ padding:14px;
 }
-button{
-border:0;
-border-radius:10px;
-padding:15px 22px;
-font-size:17px;
-font-weight:800;
-cursor:pointer;
+.strength{
+ background:#eaf9f0;
+ border-left:6px solid #15945f;
+ padding:12px;
+ margin:8px 0;
+ border-radius:8px;
 }
-.reset{
-background:#eef1f5;
-color:#333;
+.improve{
+ background:#fff5e9;
+ border-left:6px solid #ed8b16;
+ padding:12px;
+ margin:8px 0;
+ border-radius:8px;
 }
-.evaluate{
-width:100%;
-background:#172033;
-color:white;
-font-size:19px;
-margin-top:5px;
+.missed{
+ background:#fff0f0;
+ border-left:6px solid #d84444;
+ padding:12px;
+ margin:8px 0;
+ border-radius:8px;
 }
-.evaluate:hover{opacity:.9}
-.preview{
-margin-top:12px;
-font-size:14px;
-color:#475467;
+table{
+ width:100%;
+ border-collapse:collapse;
+ margin-top:12px;
 }
-.message{
-display:none;
-background:#ecfdf3;
-border:1px solid #86efac;
-padding:18px;
-border-radius:12px;
-margin-top:18px;
-line-height:1.6;
+th,td{
+ border:1px solid #d5deea;
+ padding:10px;
+ text-align:left;
+ vertical-align:top;
 }
-.badge{
-display:inline-block;
-padding:5px 9px;
-border-radius:20px;
-background:#e8f1ff;
-color:#135db5;
-font-size:13px;
-font-weight:700;
+th{
+ background:#eaf2fb;
+ color:#073d82;
+}
+.total td{
+ font-weight:bold;
+ background:#eef7ff;
+}
+.ai-box{
+ border:1px solid #d9e2ee;
+ border-radius:12px;
+ padding:14px;
+ margin:10px 0;
+}
+.ai-title{
+ font-weight:bold;
+ color:#073d82;
+ font-size:17px;
+}
+.report{
+ position:relative;
+ overflow:hidden;
+}
+.watermark{
+ position:absolute;
+ top:38%;
+ left:50%;
+ transform:translate(-50%,-50%) rotate(-25deg);
+ font-size:100px;
+ font-weight:900;
+ color:#073d82;
+ opacity:.045;
+ pointer-events:none;
+ white-space:nowrap;
+}
+.answer-preview{
+ border:2px dashed #aebccd;
+ border-radius:12px;
+ padding:15px;
+ text-align:center;
+ background:#fafcff;
+}
+.answer-preview img{
+ max-width:100%;
+ max-height:700px;
+ border-radius:8px;
+ margin:8px 0;
+}
+.annotation{
+ display:inline-block;
+ padding:5px 9px;
+ border-radius:7px;
+ margin:4px;
+ font-size:13px;
+ font-weight:bold;
+}
+.red{background:#ffe0e0;color:#a52323}
+.blue{background:#dcecff;color:#064d9e}
+.greenmark{background:#dcf7e8;color:#087146}
+.purple{background:#eee1ff;color:#66339b}
+.video{
+ background:linear-gradient(135deg,#fff0f3,#eef6ff);
+ border:1px solid #e2d7df;
+ border-radius:14px;
+ padding:22px;
+ text-align:center;
+}
+.play{
+ width:75px;
+ height:75px;
+ border-radius:50%;
+ background:#c62d39;
+ color:white;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ font-size:32px;
+ margin:0 auto 10px;
 }
 footer{
-text-align:center;
-padding:25px;
-color:#667085;
-font-size:13px;
+ text-align:center;
+ padding:30px;
+ color:#637087;
+ font-size:13px;
+}
+@media(max-width:700px){
+ .grid{grid-template-columns:1fr}
+ .hero .bigmark{font-size:58px}
+ .logo{font-size:34px}
+ table{font-size:13px}
+ th,td{padding:7px}
+}
+@media print{
+ body{background:white}
+ header,.hero .ai-row,.no-print,.upload-card{display:none!important}
+ .container{max-width:none;margin:0;padding:0}
+ .card{box-shadow:none;page-break-inside:avoid}
+ .watermark{opacity:.06}
 }
 </style>
 </head>
@@ -128,154 +277,85 @@ font-size:13px;
 <body>
 
 <header>
-Answer<span>Mitra</span>
+ <div class="logo">AM<span>•</span>AnswerMitra</div>
+ <div class="tagline">PRACTICE • ANALYSE • IMPROVE</div>
 </header>
+
+<section class="hero">
+ <div class="bigmark">A<span>M</span></div>
+ <h1>AnswerMitra</h1>
+ <p><b>From Answers to a Better You</b></p>
+ <p>AI-Powered Evaluation for UPSC & State PSC</p>
+
+ <div class="ai-row">
+  <div class="ai">🤖 OpenAI</div>
+  <div class="ai">✨ Google Gemini</div>
+  <div class="ai">🟠 Claude</div>
+  <div class="ai">🔎 Perplexity</div>
+ </div>
+
+ <p>Multi-AI Intelligence • Detailed Feedback • Personalised Improvement</p>
+</section>
 
 <div class="container">
 
-<h1>Prepare Your Evaluation</h1>
-<p class="subtitle">
-Configure your examination and upload your answer for AI-assisted evaluation.
-</p>
+<div class="card upload-card">
+<h2>📝 Answer Evaluation</h2>
 
-<div class="card">
-
-<div class="field">
-<label>1. Examination</label>
+<div class="grid">
+<div>
+<label>Examination</label>
 <select id="exam">
-<option value="">Select Examination</option>
-<option value="upsc">UPSC</option>
-<option value="state">State PSC</option>
+<option>UPSC Civil Services Examination</option>
+<option>Andhra Pradesh PSC</option>
+<option>Telangana PSC</option>
+<option>Karnataka PSC</option>
+<option>Tamil Nadu PSC</option>
+<option>Kerala PSC</option>
+<option>Maharashtra PSC</option>
+<option>Other State PSC</option>
 </select>
 </div>
 
-<div id="stateFields" class="hidden">
-
-<div class="field">
-<label>State</label>
-<select id="state">
-<option value="">Select State</option>
-<option>Andhra Pradesh</option>
-<option>Arunachal Pradesh</option>
-<option>Assam</option>
-<option>Bihar</option>
-<option>Chhattisgarh</option>
-<option>Goa</option>
-<option>Gujarat</option>
-<option>Haryana</option>
-<option>Himachal Pradesh</option>
-<option>Jharkhand</option>
-<option>Karnataka</option>
-<option>Kerala</option>
-<option>Madhya Pradesh</option>
-<option>Maharashtra</option>
-<option>Manipur</option>
-<option>Meghalaya</option>
-<option>Mizoram</option>
-<option>Nagaland</option>
-<option>Odisha</option>
-<option>Punjab</option>
-<option>Rajasthan</option>
-<option>Sikkim</option>
-<option>Tamil Nadu</option>
-<option>Telangana</option>
-<option>Tripura</option>
-<option>Uttar Pradesh</option>
-<option>Uttarakhand</option>
-<option>West Bengal</option>
-</select>
-</div>
-
-<div class="field">
-<label>Commission</label>
-<input id="commission" placeholder="Commission will be configured from official sources">
-</div>
-
-<div class="info">
-State PSC examination patterns will be connected to the respective official notification, syllabus and scheme. AnswerMitra will not assume that every State PSC follows the UPSC pattern.
-</div>
-
-</div>
-
-<div id="stageField" class="field hidden">
-<label>2. Stage</label>
+<div>
+<label>Stage</label>
 <select id="stage">
-<option value="">Select Stage</option>
-<option value="prelims">Prelims</option>
-<option value="mains">Mains</option>
+<option>Mains</option>
+<option>Prelims</option>
 </select>
 </div>
 
-<div id="paperField" class="field hidden">
-<label>3. Paper / Component</label>
+<div>
+<label>Paper / Component</label>
 <select id="paper">
-<option value="">Select Paper / Component</option>
+<option>General Studies Paper I</option>
+<option>General Studies Paper II</option>
+<option>General Studies Paper III</option>
+<option>General Studies Paper IV</option>
+<option>Essay</option>
+<option>Optional Subject</option>
 </select>
 </div>
 
-<div id="optionalField" class="field hidden">
-<label>4. Optional Subject</label>
-<select id="optional">
-<option value="">Select Optional Subject</option>
-<option>Anthropology</option>
-<option>Botany</option>
-<option>Chemistry</option>
-<option>Commerce & Accountancy</option>
-<option>Economics</option>
-<option>Electrical Engineering</option>
-<option>Geography</option>
-<option>Geology</option>
-<option>History</option>
-<option>Law</option>
-<option>Management</option>
-<option>Mathematics</option>
-<option>Mechanical Engineering</option>
-<option>Medical Science</option>
-<option>Philosophy</option>
-<option>Physics</option>
-<option>Political Science & International Relations</option>
-<option>Psychology</option>
-<option>Public Administration</option>
-<option>Sociology</option>
-<option>Statistics</option>
-<option>Zoology</option>
-<option>Telugu Literature</option>
-<option>English Literature</option>
+<div>
+<label>Question Type</label>
+<select id="qtype">
+<option>10 Marks — 150 Words</option>
+<option>15 Marks — 250 Words</option>
+<option>Essay — 1000–1200 Words</option>
+<option>Optional Subject Question</option>
+<option>Objective / MCQ</option>
 </select>
 </div>
 
-<div id="questionFields" class="hidden">
-
-<div class="field">
-<label>5. Question</label>
-<textarea id="question" placeholder="Enter or paste the exact question here"></textarea>
+<div>
+<label>Question</label>
+<textarea id="question" placeholder="Paste the exact question here..."></textarea>
 </div>
 
-<div class="field">
-<label>6. Question Type</label>
-<select id="questionType">
-<option value="">Select Question Type</option>
-</select>
-</div>
-
-<div class="field">
-<label>7. Marks for this Question</label>
-<select id="marks">
-<option value="">Select marks</option>
-</select>
-</div>
-
-<div class="field">
-<label>8. Required Response Length</label>
-<div class="wordbox" id="wordLimit">
-Select question type and marks to automatically determine the applicable response requirement.
-</div>
-</div>
-
-<div class="field">
-<label>9. Answer Language</label>
+<div>
+<label>Answer Language</label>
 <select id="language">
-<option value="">Select Answer Language</option>
 <option>English</option>
 <option>Hindi</option>
 <option>Telugu</option>
@@ -283,308 +363,384 @@ Select question type and marks to automatically determine the applicable respons
 <option>Kannada</option>
 <option>Malayalam</option>
 <option>Marathi</option>
-<option>Bengali</option>
-<option>Gujarati</option>
-<option>Odia</option>
-<option>Punjabi</option>
-<option>Urdu</option>
+<option>Other</option>
 </select>
 </div>
+</div>
 
-<div class="field">
-<label>10. Upload Your Answer</label>
-<div class="upload">
-<input type="file" id="answerFile"
-accept="image/*,application/pdf"
-multiple
-capture="environment">
-<p>Upload handwritten answer photos or PDF</p>
-<div class="preview" id="filePreview"></div>
+<br>
+
+<label>Upload Your Handwritten Answer</label>
+<input id="answerFile" type="file" accept="image/*,application/pdf" multiple>
+
+<p class="notice">
+📌 Upload one or more clear photographs or a PDF of your original handwritten answer.
+</p>
+
+<div class="actions">
+<button class="button primary" onclick="evaluateAnswer()">🤖 Evaluate My Answer</button>
+<button class="button light" onclick="resetPage()">Reset</button>
 </div>
 </div>
 
-<button class="evaluate" id="evaluateBtn">
-🤖 Evaluate My Answer
-</button>
+<div id="report" class="report hidden">
 
-<button class="reset" id="resetBtn" style="width:100%;margin-top:10px">
-Reset
-</button>
+<div class="watermark">AM ANSWERMITRA</div>
 
-<div class="message" id="message"></div>
+<div class="card">
+<h2>📄 AnswerMitra — Evaluation Analysis Report</h2>
 
+<div class="success">
+<b>Unified AI Evaluation</b><br>
+OpenAI + Google Gemini + Claude + Perplexity analyses are designed to be combined by the AnswerMitra evaluation engine into one consolidated learning report.
 </div>
 
+<div class="grid">
+<div><b>Examination:</b><br><span id="rExam"></span></div>
+<div><b>Stage:</b><br><span id="rStage"></span></div>
+<div><b>Paper:</b><br><span id="rPaper"></span></div>
+<div><b>Question Type:</b><br><span id="rType"></span></div>
+<div><b>Language:</b><br><span id="rLanguage"></span></div>
+<div><b>Response Requirement:</b><br><span id="rWords"></span></div>
+</div>
+</div>
+
+<div class="card">
+<h2>🎯 Overall Evaluation</h2>
+<div class="score">11/15</div>
+<p style="text-align:center"><b>AI-assisted estimated score</b></p>
+<p style="text-align:center">
+This is a learning-oriented estimate and is <b>not an official UPSC or State PSC mark.</b>
+</p>
+</div>
+
+<div class="card">
+<h2>🔍 1. Question Demand Analysis</h2>
+<ul>
+<li><b>Directive:</b> Identify the exact demand of the question.</li>
+<li><b>Core theme:</b> Identify the central issue being tested.</li>
+<li><b>Dimensions expected:</b> Constitutional, social, economic, political, ethical, environmental or other relevant dimensions.</li>
+<li><b>Current-affairs connection:</b> Identify relevant recent developments where applicable.</li>
+<li><b>Answer architecture:</b> Introduction → Core arguments → Multiple dimensions → Examples/data → Conclusion/way forward.</li>
+</ul>
+</div>
+
+<div class="card">
+<h2>📊 2. Detailed Marks Analysis</h2>
+
+<table>
+<tr>
+<th>Parameter</th>
+<th>Max Marks</th>
+<th>Marks Awarded</th>
+<th>Analysis</th>
+</tr>
+
+<tr><td>Question Demand</td><td>2</td><td>1.5</td><td>Demand substantially addressed; one dimension can be developed further.</td></tr>
+<tr><td>Introduction</td><td>1</td><td>0.8</td><td>Relevant opening; stronger contextualisation could improve it.</td></tr>
+<tr><td>Content & Knowledge</td><td>3</td><td>2.2</td><td>Good conceptual content with scope for additional evidence.</td></tr>
+<tr><td>Factual Accuracy</td><td>1</td><td>0.8</td><td>Generally accurate; facts should be verified against authoritative sources.</td></tr>
+<tr><td>Analytical Depth</td><td>2</td><td>1.4</td><td>Analysis present; deeper cause-effect and counter-perspective would add value.</td></tr>
+<tr><td>Multi-dimensionality</td><td>2</td><td>1.3</td><td>Multiple dimensions used; one or two relevant dimensions are missing.</td></tr>
+<tr><td>Examples / Data / Case Studies</td><td>1</td><td>0.7</td><td>Relevant examples present; recent evidence can strengthen the answer.</td></tr>
+<tr><td>Structure & Coherence</td><td>1</td><td>0.8</td><td>Logical structure with scope to improve transitions.</td></tr>
+<tr><td>Conclusion / Way Forward</td><td>1</td><td>0.7</td><td>Relevant conclusion; make the way forward more actionable.</td></tr>
+
+<tr class="total">
+<td>Total</td><td>14</td><td>10.2</td><td>Illustrative prototype evaluation</td>
+</tr>
+</table>
+
+<p class="notice">
+The exact rubric and maximum marks will be dynamically adapted to the selected examination, paper, question type and official scheme when the backend is connected.
+</p>
+</div>
+
+<div class="card">
+<h2>🤖 3. Multi-AI Analysis</h2>
+
+<div class="ai-box">
+<div class="ai-title">🤖 OpenAI Analysis</div>
+Content, reasoning, structure, language, question demand and answer-quality analysis.
+</div>
+
+<div class="ai-box">
+<div class="ai-title">✨ Google Gemini Analysis</div>
+Multimodal answer/handwriting understanding and independent evaluation of content and presentation.
+</div>
+
+<div class="ai-box">
+<div class="ai-title">🟠 Claude Analysis</div>
+Detailed reasoning, coherence, nuance, argument quality and improvement analysis.
+</div>
+
+<div class="ai-box">
+<div class="ai-title">🔎 Perplexity Research</div>
+Current-affairs research, fact verification and source discovery where relevant.
+</div>
+
+<div class="success">
+<b>AnswerMitra Unified Evaluation Engine</b><br>
+The final system will compare findings, identify agreements/disagreements, verify important facts and produce one consolidated evaluation rather than simply averaging four AI scores.
+</div>
+</div>
+
+<div class="card">
+<h2>🟢 4. What You Did Well</h2>
+
+<div class="strength">✓ Good understanding of the central demand.</div>
+<div class="strength">✓ Relevant arguments and conceptual knowledge.</div>
+<div class="strength">✓ Logical answer structure.</div>
+<div class="strength">✓ Appropriate examples/value additions where used.</div>
+<div class="strength">✓ Balanced presentation of the issue.</div>
+
+<p><b>Why these points matter:</b> AnswerMitra will explain not only that a point is good, but why it helps satisfy the question demand and how it can be strengthened further.</p>
+</div>
+
+<div class="card">
+<h2>🔴 5. What You Missed</h2>
+
+<div class="missed"><b>Missing Dimension:</b> Identify an expected dimension not adequately covered.</div>
+<div class="missed"><b>Missing Evidence:</b> Add relevant data, case study, report or official example.</div>
+<div class="missed"><b>Missing Counter-view:</b> Consider an alternative perspective where required.</div>
+<div class="missed"><b>Missing Way Forward:</b> Provide specific and actionable solutions.</div>
+</div>
+
+<div class="card">
+<h2>✏️ 6. Corrections & Evaluator Remarks</h2>
+
+<p>
+<span class="annotation red">🔴 Correction</span>
+<span class="annotation blue">🔵 Evaluator Remark</span>
+<span class="annotation greenmark">🟢 Appreciation</span>
+<span class="annotation purple">🟣 Value Addition</span>
+</p>
+
+<p>
+The final AI engine will place corrections and remarks at the relevant location on the student's handwritten page rather than providing only a separate correction list.
+</p>
+
+<ul>
+<li>Spelling and grammar corrections</li>
+<li>Incorrect factual statements</li>
+<li>Sentence clarity</li>
+<li>Weak arguments</li>
+<li>Strong points</li>
+<li>Missing examples</li>
+<li>Presentation/diagram suggestions</li>
+</ul>
+</div>
+
+<div class="card">
+<h2>🖼️ 7. Original Handwritten Answer</h2>
+<div id="originalAnswer" class="answer-preview">
+Your uploaded original answer will appear here.
+</div>
+</div>
+
+<div class="card">
+<h2>🖍️ 8. AI Annotated Answer</h2>
+<div class="answer-preview">
+<p><b>Annotated version will appear here when the handwriting-analysis backend is connected.</b></p>
+<p>
+<span class="annotation red">Incorrect / correction</span>
+<span class="annotation greenmark">Good point</span>
+<span class="annotation blue">Evaluator remark</span>
+<span class="annotation purple">Add value</span>
+</p>
+</div>
+</div>
+
+<div class="card">
+<h2>💡 9. What You Could Have Written</h2>
+
+<h3>Improved Answer Approach</h3>
+<ol>
+<li>Start with a concise context-setting introduction.</li>
+<li>Directly address the directive and core demand.</li>
+<li>Organise the body into clear dimensions.</li>
+<li>Use relevant constitutional provisions, reports, data, examples or case studies where applicable.</li>
+<li>Include balanced analysis rather than merely listing points.</li>
+<li>End with a concise, practical and optimistic way forward.</li>
+</ol>
+
+<h3>AnswerMitra Model Answer</h3>
+<p>
+An original model/reference answer will be generated from the verified question requirements, official sources, relevant current affairs and the student's identified gaps. It will not be represented as an official UPSC answer.
+</p>
+</div>
+
+<div class="card">
+<h2>📚 10. Value Addition & Verified Sources</h2>
+
+<ul>
+<li>Relevant government reports and official documents</li>
+<li>Constitutional provisions and important judgments where applicable</li>
+<li>Government schemes and institutional data</li>
+<li>Recent verified current-affairs examples</li>
+<li>Relevant case studies and examples</li>
+<li>Authoritative sources with date/reference information</li>
+</ul>
+
+<p class="notice">
+The production system will attach source/date information to important factual additions and will apply an exam-date cutoff so future information is not incorrectly used for a past question.
+</p>
+</div>
+
+<div class="card">
+<h2>🎥 11. Personalized AnswerMitra Video Class</h2>
+
+<div class="video">
+<div class="play">▶</div>
+<h3>7–10 Minute Answer Explanation</h3>
+<p>
+Your personalized lesson will explain the question demand, your strengths, missed dimensions, better structure, examples, model approach and the exact improvements needed for your next answer.
+</p>
+<button class="button primary" onclick="videoMessage()">▶ Watch Explanation Video</button>
+</div>
+</div>
+
+<div class="card">
+<h2>📈 12. Personal Improvement Plan</h2>
+
+<div class="improve"><b>Focus 1:</b> Strengthen multi-dimensional analysis.</div>
+<div class="improve"><b>Focus 2:</b> Use more relevant current examples and evidence.</div>
+<div class="improve"><b>Focus 3:</b> Make conclusions more actionable.</div>
+<div class="improve"><b>Focus 4:</b> Improve presentation and answer flow.</div>
+
+<h3>Suggested Next Practice</h3>
+<ol>
+<li>Practice a question testing the same core concept.</li>
+<li>Practice a question targeting the identified weak dimension.</li>
+<li>Attempt one higher-order analytical question under time pressure.</li>
+</ol>
+</div>
+
+<div class="card">
+<h2>📄 13. Complete Evaluation Report</h2>
+
+<p>
+The final downloadable report will contain:
+</p>
+
+<ul>
+<li>AM AnswerMitra watermark and branding</li>
+<li>Question and examination details</li>
+<li>Question-demand analysis</li>
+<li>Detailed marks analysis</li>
+<li>Unified multi-AI findings</li>
+<li>Strengths and appreciation</li>
+<li>Missed dimensions</li>
+<li>Corrections and evaluator remarks</li>
+<li>Original handwritten answer</li>
+<li>Annotated answer</li>
+<li>Model/reference answer</li>
+<li>Verified sources/value addition</li>
+<li>Personalized video link/QR</li>
+<li>Personal improvement plan</li>
+</ul>
+
+<div class="actions no-print">
+<button class="button primary" onclick="window.print()">📥 Download / Save as PDF</button>
+<button class="button light" onclick="resetPage()">Start New Evaluation</button>
+</div>
+
+<p class="notice">
+On mobile/tablet, choose <b>Print → Save as PDF</b> when the print dialog appears.
+</p>
+</div>
+
+</div>
 </div>
 
 <footer>
-AnswerMitra © 2026 — AI-assisted UPSC & State PSC answer coaching
+<b>AM AnswerMitra</b><br>
+PRACTICE • ANALYSE • IMPROVE<br>
+© 2026 AnswerMitra — AI-assisted UPSC & State PSC answer coaching
 </footer>
 
 <script>
 
-const exam=document.getElementById("exam");
-const stateFields=document.getElementById("stateFields");
-const stageField=document.getElementById("stageField");
-const stage=document.getElementById("stage");
-const paperField=document.getElementById("paperField");
-const paper=document.getElementById("paper");
-const optionalField=document.getElementById("optionalField");
-const questionFields=document.getElementById("questionFields");
-const questionType=document.getElementById("questionType");
-const marks=document.getElementById("marks");
-const wordLimit=document.getElementById("wordLimit");
-const answerFile=document.getElementById("answerFile");
-const filePreview=document.getElementById("filePreview");
-const message=document.getElementById("message");
+function evaluateAnswer(){
 
-exam.addEventListener("change",function(){
+ const exam=document.getElementById("exam").value;
+ const stage=document.getElementById("stage").value;
+ const paper=document.getElementById("paper").value;
+ const type=document.getElementById("qtype").value;
+ const language=document.getElementById("language").value;
+ const question=document.getElementById("question").value.trim();
+ const files=document.getElementById("answerFile").files;
 
-stateFields.classList.toggle("hidden",this.value!=="state");
-stageField.classList.toggle("hidden",!this.value);
+ document.getElementById("rExam").textContent=exam;
+ document.getElementById("rStage").textContent=stage;
+ document.getElementById("rPaper").textContent=paper;
+ document.getElementById("rType").textContent=type;
+ document.getElementById("rLanguage").textContent=language;
 
-stage.value="";
-paper.innerHTML='<option value="">Select Paper / Component</option>';
-optionalField.classList.add("hidden");
-questionFields.classList.add("hidden");
+ let words="Automatic based on official examination configuration";
+ if(type.includes("10 Marks")) words="150 words";
+ else if(type.includes("15 Marks")) words="250 words";
+ else if(type.includes("Essay")) words="1000–1200 words";
+ else if(type.includes("Objective")) words="Objective response — no descriptive word limit";
 
-});
+ document.getElementById("rWords").textContent=words;
 
-stage.addEventListener("change",function(){
+ const box=document.getElementById("originalAnswer");
+ box.innerHTML="";
 
-paper.innerHTML='<option value="">Select Paper / Component</option>';
-optionalField.classList.add("hidden");
-questionFields.classList.add("hidden");
+ if(files.length===0){
+   box.innerHTML="<p>⚠️ No answer file selected. Please upload the student's handwritten answer.</p>";
+ }else{
 
-if(!this.value)return;
+   for(let i=0;i<files.length;i++){
 
-paperField.classList.remove("hidden");
+     const file=files[i];
 
-if(exam.value==="upsc" && this.value==="mains"){
+     const title=document.createElement("p");
+     title.innerHTML="<b>Original Page "+(i+1)+" — "+file.name+"</b>";
+     box.appendChild(title);
 
-paper.innerHTML+=`
-<option value="gs1">GS Paper I</option>
-<option value="gs2">GS Paper II</option>
-<option value="gs3">GS Paper III</option>
-<option value="gs4">GS Paper IV</option>
-<option value="essay">Essay</option>
-<option value="optional">Optional Subject</option>
-`;
+     if(file.type.startsWith("image/")){
 
-}else if(exam.value==="upsc" && this.value==="prelims"){
+       const img=document.createElement("img");
 
-paper.innerHTML+=`
-<option value="gs1prelims">General Studies Paper I</option>
-<option value="csat">CSAT / General Studies Paper II</option>
-`;
+       const reader=new FileReader();
 
-}else if(exam.value==="state"){
+       reader.onload=function(e){
+         img.src=e.target.result;
+       };
 
-paper.innerHTML+=`
-<option value="official">Official State PSC Paper / Component</option>
-`;
+       reader.readAsDataURL(file);
 
+       box.appendChild(img);
+
+     }else{
+
+       const pdf=document.createElement("p");
+
+       pdf.innerHTML="📄 PDF uploaded: <b>"+file.name+"</b><br>"+
+       "The original PDF will be attached to the final report by the production backend.";
+
+       box.appendChild(pdf);
+     }
+   }
+ }
+
+ document.getElementById("report").classList.remove("hidden");
+
+ window.scrollTo({
+   top:document.getElementById("report").offsetTop-10,
+   behavior:"smooth"
+ });
 }
 
-});
-
-paper.addEventListener("change",function(){
-
-optionalField.classList.add("hidden");
-questionFields.classList.add("hidden");
-
-if(!this.value)return;
-
-if(this.value==="optional"){
-optionalField.classList.remove("hidden");
+function resetPage(){
+ location.reload();
 }
 
-questionFields.classList.remove("hidden");
-
-setupQuestionTypes();
-
-});
-
-document.getElementById("optional").addEventListener("change",function(){
-setupQuestionTypes();
-});
-
-questionType.addEventListener("change",updateMarks);
-
-marks.addEventListener("change",updateWordLimit);
-
-function setupQuestionTypes(){
-
-questionType.innerHTML='<option value="">Select Question Type</option>';
-
-if(exam.value==="upsc" && stage.value==="prelims"){
-
-questionType.innerHTML+=`
-<option value="mcq">Objective MCQ</option>
-`;
-
-}else if(paper.value==="essay"){
-
-questionType.innerHTML+=`
-<option value="essay">Essay</option>
-`;
-
-}else{
-
-questionType.innerHTML+=`
-<option value="gs10">10-mark descriptive question</option>
-<option value="gs15">15-mark descriptive question</option>
-`;
-
-if(paper.value==="optional"){
-questionType.innerHTML+=`
-<option value="optional20">20-mark optional question</option>
-`;
+function videoMessage(){
+ alert("🎥 Personalized AnswerMitra video generation will be connected to the secure AI/video backend in the next development stage.");
 }
-
-}
-
-marks.innerHTML='<option value="">Select marks</option>';
-
-wordLimit.textContent=
-"Select question type and marks to automatically determine the applicable response requirement.";
-
-}
-
-function updateMarks(){
-
-marks.innerHTML='<option value="">Select marks</option>';
-
-if(questionType.value==="mcq"){
-marks.innerHTML+='<option value="2">Objective question</option>';
-}
-else if(questionType.value==="gs10"){
-marks.innerHTML+='<option value="10">10 marks</option>';
-}
-else if(questionType.value==="gs15"){
-marks.innerHTML+='<option value="15">15 marks</option>';
-}
-else if(questionType.value==="essay"){
-marks.innerHTML+='<option value="250">250 marks</option>';
-}
-else if(questionType.value==="optional20"){
-marks.innerHTML+='<option value="20">20 marks</option>';
-}
-
-updateWordLimit();
-
-}
-
-function updateWordLimit(){
-
-const t=questionType.value;
-const m=marks.value;
-
-if(t==="gs10" && m==="10"){
-wordLimit.innerHTML=
-"📌 <strong>150 words</strong> — UPSC Mains 10-mark descriptive response";
-}
-else if(t==="gs15" && m==="15"){
-wordLimit.innerHTML=
-"📌 <strong>250 words</strong> — UPSC Mains 15-mark descriptive response";
-}
-else if(t==="essay" && m==="250"){
-wordLimit.innerHTML=
-"📌 <strong>1000–1200 words</strong> — UPSC Essay paper";
-}
-else if(t==="mcq"){
-wordLimit.innerHTML=
-"📌 <strong>Objective MCQ</strong> — No descriptive word limit";
-}
-else if(t==="optional20"){
-wordLimit.innerHTML=
-"📌 <strong>Subject-specific requirement</strong> — AnswerMitra will use the applicable official optional-paper configuration.";
-}
-else{
-wordLimit.textContent=
-"Select question type and marks to automatically determine the applicable response requirement.";
-}
-
-}
-
-answerFile.addEventListener("change",function(){
-
-if(!this.files.length){
-filePreview.textContent="";
-return;
-}
-
-filePreview.innerHTML=
-"📎 <strong>"+this.files.length+
-"</strong> file(s) selected.";
-
-});
-
-document.getElementById("evaluateBtn").addEventListener("click",function(){
-
-const required=[
-["exam","Examination"],
-["stage","Stage"],
-["paper","Paper / Component"],
-["question","Question"],
-["questionType","Question Type"],
-["marks","Marks"],
-["language","Answer Language"]
-];
-
-for(const item of required){
-
-const el=document.getElementById(item[0]);
-
-if(!el.value.trim()){
-alert("Please select/enter: "+item[1]);
-el.focus();
-return;
-}
-
-}
-
-if(!answerFile.files.length){
-alert("Please upload your handwritten answer.");
-return;
-}
-
-message.style.display="block";
-
-message.innerHTML=`
-<strong>✅ Your answer has been received.</strong><br><br>
-Your uploaded answer is ready for the AnswerMitra AI evaluation pipeline.<br><br>
-
-<span class="badge">AI-assisted evaluation</span>
-
-<p>
-The full AnswerMitra engine will analyse handwriting, meaning,
-question demand, content, arguments, examples, structure,
-introduction, conclusion, grammar, presentation, missing dimensions
-and answer quality.
-</p>
-
-<p>
-It will also provide detailed appreciation, corrections,
-evaluator remarks, estimated marks and personalised improvement
-guidance.
-</p>
-
-<p>
-<strong>Important:</strong> Any score generated by AnswerMitra will be
-an AI-assisted estimate, not an official UPSC or State PSC mark.
-</p>
-`;
-
-message.scrollIntoView({behavior:"smooth"});
-
-});
-
-document.getElementById("resetBtn").addEventListener("click",function(){
-
-location.reload();
-
-});
 
 </script>
 
