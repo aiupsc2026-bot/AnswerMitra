@@ -7,457 +7,251 @@
 
 <style>
 *{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+html{
+    scroll-behavior:smooth;
 }
 
 body{
-  font-family:Arial,Helvetica,sans-serif;
-  color:#102a55;
-  background:#f5f8fc;
+    font-family:Arial,Helvetica,sans-serif;
+    color:#102a55;
+    background:#f5f8fc;
+    line-height:1.6;
 }
 
 header{
-  height:82px;
-  background:rgba(255,255,255,.97);
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:10px 5%;
-  position:relative;
-  z-index:10;
-  box-shadow:0 2px 12px rgba(0,0,0,.08);
+    position:sticky;
+    top:0;
+    z-index:1000;
+    background:#ffffff;
+    box-shadow:0 2px 12px rgba(0,0,0,.08);
 }
 
-.logo-small{
-  display:flex;
-  align-items:center;
-  gap:8px;
+.navbar{
+    max-width:1250px;
+    margin:auto;
+    padding:14px 22px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
 }
 
-.am-mini{
-  width:62px;
-  height:54px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:38px;
-  font-weight:900;
-  letter-spacing:-6px;
-  font-family:Georgia,serif;
-  color:#123d78;
+.logo{
+    font-size:28px;
+    font-weight:800;
+    color:#123b78;
 }
 
-.am-mini span{
-  color:#1264d8;
-}
-
-.brand-mini{
-  font-family:Georgia,serif;
-  font-size:22px;
-  font-weight:700;
-}
-
-.brand-mini span{
-  color:#1264d8;
+.logo span{
+    color:#e67e22;
 }
 
 nav{
-  display:flex;
-  align-items:center;
-  gap:38px;
+    display:flex;
+    align-items:center;
+    gap:24px;
 }
 
 nav a{
-  text-decoration:none;
-  color:#12345f;
-  font-weight:600;
-  font-size:16px;
+    text-decoration:none;
+    color:#17365f;
+    font-weight:600;
+    font-size:14px;
 }
 
 nav a:hover{
-  color:#1769d5;
+    color:#e67e22;
 }
 
 .login{
-  display:flex;
-  align-items:center;
-  gap:8px;
-}
-
-.login-icon{
-  width:38px;
-  height:38px;
-  border:2px solid #d8e0eb;
-  border-radius:50%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:20px;
+    border:1px solid #d9e2ef;
+    padding:8px 14px;
+    border-radius:8px;
 }
 
 .get-started{
-  background:#12427f;
-  color:white!important;
-  padding:14px 25px;
-  border-radius:10px;
+    background:#1167d8;
+    color:#fff !important;
+    padding:10px 18px;
+    border-radius:8px;
 }
 
 .hero{
-  min-height:calc(100vh - 82px);
-  position:relative;
-  overflow:hidden;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-  padding:50px 5%;
-  background:
-    radial-gradient(circle at 50% 42%,rgba(255,255,255,.98) 0%,rgba(255,255,255,.85) 27%,rgba(218,235,252,.72) 58%,rgba(185,215,243,.85) 100%);
+    width:100%;
+    background:#ffffff;
+    padding:0;
 }
 
-.hero:before{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:
-    linear-gradient(180deg,rgba(255,255,255,.75),rgba(211,229,247,.35)),
-    linear-gradient(90deg,rgba(255,255,255,.35),transparent,rgba(255,255,255,.35));
-  pointer-events:none;
+.hero-image{
+    width:100%;
+    display:block;
+    height:auto;
+    max-height:calc(100vh - 72px);
+    object-fit:cover;
+    object-position:center;
 }
 
-.landmark-left{
-  position:absolute;
-  left:-30px;
-  bottom:-30px;
-  width:280px;
-  height:300px;
-  opacity:.15;
-}
-
-.landmark-left:before{
-  content:"";
-  position:absolute;
-  left:80px;
-  bottom:0;
-  width:120px;
-  height:220px;
-  border:15px solid #35628d;
-  border-bottom:0;
-  border-radius:70px 70px 0 0;
-}
-
-.landmark-right{
-  position:absolute;
-  right:-40px;
-  bottom:-40px;
-  width:330px;
-  height:310px;
-  opacity:.13;
-}
-
-.landmark-right:before{
-  content:"";
-  position:absolute;
-  left:25px;
-  bottom:0;
-  width:280px;
-  height:180px;
-  border-radius:50% 50% 0 0;
-  background:#416b91;
-}
-
-.landmark-right:after{
-  content:"";
-  position:absolute;
-  left:125px;
-  bottom:165px;
-  width:80px;
-  height:110px;
-  border-radius:50% 50% 0 0;
-  background:#416b91;
-}
-
-.side-quote{
-  position:absolute;
-  width:240px;
-  color:#173c70;
-  font-family:"Brush Script MT","Segoe Print",cursive;
-  font-size:24px;
-  line-height:1.45;
-  font-weight:600;
-  z-index:2;
-}
-
-.left-quote{
-  left:4%;
-  top:25%;
-  transform:rotate(-5deg);
-}
-
-.right-quote{
-  right:4%;
-  top:20%;
-  transform:rotate(-5deg);
-}
-
-.tricolor{
-  width:130px;
-  height:5px;
-  margin:15px auto 0;
-  border-radius:10px;
-  background:linear-gradient(to right,#f47b20 0 33%,#16804b 33% 66%,#176bd1 66% 100%);
-}
-
-.content{
-  position:relative;
-  z-index:3;
-  max-width:950px;
-  width:100%;
-}
-
-.big-logo{
-  margin:0 auto 5px;
-  width:390px;
-  max-width:72vw;
-}
-
-.am-logo{
-  height:190px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-family:Georgia,"Times New Roman",serif;
-  font-size:155px;
-  font-weight:900;
-  letter-spacing:-28px;
-  color:#0b3c78;
-  text-shadow:2px 4px 4px rgba(0,0,0,.12);
-  position:relative;
-}
-
-.am-logo .a{
-  color:#083b77;
-}
-
-.am-logo .m{
-  color:#1769d4;
-}
-
-.emblem{
-  position:absolute;
-  right:53px;
-  top:22px;
-  font-size:48px;
-  letter-spacing:0;
-  color:#ef7620;
-}
-
-.wave{
-  position:absolute;
-  left:20px;
-  right:15px;
-  bottom:42px;
-  height:16px;
-  border-top:7px solid #f27b21;
-  border-radius:50%;
-  transform:rotate(-5deg);
-}
-
-.wave2{
-  position:absolute;
-  left:25px;
-  right:30px;
-  bottom:27px;
-  height:15px;
-  border-top:6px solid #16814e;
-  border-radius:50%;
-  transform:rotate(-4deg);
-}
-
-.big-brand{
-  font-family:Georgia,"Times New Roman",serif;
-  font-size:62px;
-  font-weight:800;
-  letter-spacing:-2px;
-  color:#0c3b76;
-  margin-top:-22px;
-}
-
-.big-brand span{
-  color:#1267d5;
-}
-
-.tagline{
-  font-size:23px;
-  font-family:Georgia,"Times New Roman",serif;
-  margin-top:12px;
-  color:#153d70;
-  font-weight:600;
-}
-
-.subtitle{
-  font-size:20px;
-  font-family:Georgia,"Times New Roman",serif;
-  margin-top:8px;
-  color:#244b78;
-}
-
-.ai-row{
-  display:flex;
-  justify-content:center;
-  gap:15px;
-  flex-wrap:wrap;
-  margin:28px auto 12px;
-}
-
-.ai{
-  min-width:150px;
-  background:rgba(255,255,255,.94);
-  border:1px solid #d8e2ed;
-  border-radius:10px;
-  padding:13px 18px;
-  box-shadow:0 4px 12px rgba(24,65,105,.10);
-  font-weight:700;
-  font-size:16px;
-}
-
-.ai-icon{
-  font-size:23px;
-  margin-right:7px;
-}
-
-.ai-openai{color:#168b78}
-.ai-gemini{color:#4267d8}
-.ai-claude{color:#c56528}
-.ai-perplexity{color:#17677c}
-
-.features{
-  font-size:17px;
-  color:#365578;
-  margin:12px 0 25px;
-  font-weight:600;
+.hero-button-wrap{
+    text-align:center;
+    padding:20px 15px 28px;
+    background:#ffffff;
 }
 
 .start-button{
-  display:inline-flex;
-  align-items:center;
-  gap:16px;
-  background:#12477f;
-  color:#fff;
-  text-decoration:none;
-  padding:18px 38px;
-  border-radius:11px;
-  font-size:19px;
-  font-weight:700;
-  box-shadow:0 8px 20px rgba(18,71,127,.25);
-  transition:.2s;
+    display:inline-block;
+    text-decoration:none;
+    background:#075fc4;
+    color:white;
+    font-size:17px;
+    font-weight:700;
+    padding:14px 30px;
+    border-radius:9px;
+    box-shadow:0 5px 16px rgba(0,80,180,.22);
 }
 
 .start-button:hover{
-  transform:translateY(-2px);
-  background:#0c3969;
+    background:#064d9f;
 }
 
-.arrow{
-  font-size:27px;
+section{
+    max-width:1150px;
+    margin:auto;
+    padding:70px 22px;
 }
 
-.bottom-note{
-  margin-top:22px;
-  font-size:13px;
-  color:#536b87;
+.section-title{
+    text-align:center;
+    font-size:32px;
+    margin-bottom:15px;
+    color:#102a55;
+}
+
+.section-subtitle{
+    text-align:center;
+    max-width:760px;
+    margin:0 auto 40px;
+    color:#60708a;
+}
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:22px;
+}
+
+.card{
+    background:white;
+    border-radius:14px;
+    padding:28px;
+    box-shadow:0 5px 20px rgba(20,50,90,.08);
+    border:1px solid #e5ebf3;
+}
+
+.card h3{
+    margin-bottom:10px;
+    color:#123b78;
+}
+
+.card p{
+    color:#64748b;
+}
+
+.process{
+    background:#eef5fc;
+    max-width:none;
+}
+
+.process-inner{
+    max-width:1150px;
+    margin:auto;
+    padding:70px 22px;
+}
+
+.steps{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:20px;
+}
+
+.step{
+    background:white;
+    padding:25px;
+    border-radius:13px;
+    border:1px solid #dce6f2;
+}
+
+.step-number{
+    width:40px;
+    height:40px;
+    border-radius:50%;
+    background:#1167d8;
+    color:white;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:800;
+    margin-bottom:15px;
 }
 
 footer{
-  text-align:center;
-  padding:20px;
-  background:#fff;
-  color:#66788e;
-  font-size:13px;
+    background:#102a55;
+    color:white;
+    text-align:center;
+    padding:30px 20px;
+}
+
+footer p{
+    margin:5px 0;
 }
 
 @media(max-width:900px){
-  nav{
-    gap:15px;
-  }
+    nav{
+        gap:10px;
+    }
 
-  nav a:not(.get-started){
-    display:none;
-  }
+    nav a{
+        font-size:12px;
+    }
 
-  .side-quote{
-    display:none;
-  }
+    .cards{
+        grid-template-columns:1fr;
+    }
 
-  .big-brand{
-    font-size:45px;
-  }
-
-  .am-logo{
-    font-size:120px;
-    height:155px;
-  }
-
-  .emblem{
-    right:30px;
-  }
+    .steps{
+        grid-template-columns:1fr 1fr;
+    }
 }
 
 @media(max-width:600px){
-  header{
-    height:70px;
-    padding:8px 15px;
-  }
+    .navbar{
+        padding:12px 14px;
+    }
 
-  .brand-mini{
-    font-size:18px;
-  }
+    .logo{
+        font-size:22px;
+    }
 
-  .am-mini{
-    font-size:30px;
-    width:48px;
-  }
+    nav a:not(.get-started){
+        display:none;
+    }
 
-  .get-started{
-    padding:10px 13px;
-    font-size:13px;
-  }
+    .hero-image{
+        max-height:none;
+        object-fit:contain;
+    }
 
-  .hero{
-    min-height:calc(100vh - 70px);
-    padding:35px 15px;
-  }
+    .steps{
+        grid-template-columns:1fr;
+    }
 
-  .am-logo{
-    font-size:95px;
-    height:125px;
-    letter-spacing:-18px;
-  }
-
-  .big-brand{
-    font-size:38px;
-  }
-
-  .tagline{
-    font-size:19px;
-  }
-
-  .subtitle{
-    font-size:17px;
-  }
-
-  .ai{
-    min-width:135px;
-    font-size:14px;
-    padding:11px;
-  }
-
-  .start-button{
-    padding:16px 25px;
-    font-size:17px;
-  }
+    .section-title{
+        font-size:27px;
+    }
 }
 </style>
 </head>
@@ -465,126 +259,214 @@ footer{
 <body>
 
 <header>
+    <div class="navbar">
 
-  <div class="logo-small">
-    <div class="am-mini">
-      <span>A</span><span>M</span>
+        <div class="logo">
+            Answer<span>Mitra</span>
+        </div>
+
+        <nav>
+            <a href="#home">Home</a>
+            <a href="evaluation.html">Evaluate</a>
+            <a href="#process">How it Works</a>
+            <a href="#about">About</a>
+            <a href="#resources">Resources</a>
+            <a href="#contact">Contact</a>
+            <a href="#" class="login">👤 Login</a>
+            <a href="evaluation.html" class="get-started">Get Started</a>
+        </nav>
+
     </div>
-    <div class="brand-mini">
-      Answer<span>Mitra</span>
-    </div>
-  </div>
-
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="evaluation.html">Evaluate</a>
-    <a href="#how">How it Works</a>
-    <a href="#about">About</a>
-    <a href="#resources">Resources</a>
-    <a href="#contact">Contact</a>
-
-    <div class="login">
-      <div class="login-icon">👤</div>
-      <a href="#login">Login</a>
-    </div>
-
-    <a class="get-started" href="evaluation.html">
-      Get Started
-    </a>
-  </nav>
-
 </header>
 
-<main class="hero">
+<main>
 
-  <div class="landmark-left"></div>
-  <div class="landmark-right"></div>
+<section class="hero" id="home">
 
-  <div class="side-quote left-quote">
-    Prepare with Purpose<br>
-    Practice with Discipline<br>
-    Serve with Integrity
-    <div class="tricolor"></div>
-  </div>
+    <!-- Ultra-HD AnswerMitra opening image -->
+    <img
+        src="answermitra-ultrahd.png"
+        alt="AnswerMitra AI-powered UPSC and State PSC answer evaluation"
+        class="hero-image"
+    >
 
-  <div class="side-quote right-quote">
-    Every Answer You Write<br>
-    Takes You One Step Closer<br>
-    to the Civil Services
-    <div class="tricolor"></div>
-  </div>
-
-  <section class="content">
-
-    <div class="big-logo">
-      <div class="am-logo">
-        <span class="a">A</span>
-        <span class="m">M</span>
-        <span class="emblem">♛</span>
-        <div class="wave"></div>
-        <div class="wave2"></div>
-      </div>
+    <div class="hero-button-wrap">
+        <a href="evaluation.html" class="start-button">
+            Start Answer Evaluation →
+        </a>
     </div>
 
-    <div class="big-brand">
-      Answer<span>Mitra</span>
-    </div>
+</section>
 
-    <div class="tricolor"></div>
 
-    <div class="tagline">
-      From Answers to a Better You
-    </div>
+<section id="about">
 
-    <div class="subtitle">
-      AI-Powered Evaluation for UPSC &amp; State PSC
-    </div>
+    <h2 class="section-title">From Answers to a Better You</h2>
 
-    <div class="ai-row">
+    <p class="section-subtitle">
+        AnswerMitra is designed to understand your answer,
+        identify what you did well, show what you missed,
+        and help you continuously improve your UPSC and State PSC writing.
+    </p>
 
-      <div class="ai ai-openai">
-        <span class="ai-icon">◉</span>
-        OpenAI
-      </div>
+    <div class="cards">
 
-      <div class="ai ai-gemini">
-        <span class="ai-icon">✦</span>
-        Google Gemini
-      </div>
+        <div class="card">
+            <h3>🧠 Meaning-Based Evaluation</h3>
+            <p>
+                Understands the meaning, arguments, examples and
+                structure of your answer instead of relying only on keywords.
+            </p>
+        </div>
 
-      <div class="ai ai-claude">
-        <span class="ai-icon">✺</span>
-        Claude
-      </div>
+        <div class="card">
+            <h3>✍️ Detailed Feedback</h3>
+            <p>
+                Highlights corrections, strengths, weaknesses,
+                missing dimensions and ways to improve your answer.
+            </p>
+        </div>
 
-      <div class="ai ai-perplexity">
-        <span class="ai-icon">✧</span>
-        Perplexity
-      </div>
+        <div class="card">
+            <h3>📈 Personal Improvement</h3>
+            <p>
+                Your evaluations can build a learning profile
+                that identifies recurring weaknesses and improvement areas.
+            </p>
+        </div>
 
     </div>
 
-    <div class="features">
-      Multi-AI Intelligence &nbsp; | &nbsp;
-      Detailed Feedback &nbsp; | &nbsp;
-      Personalised Improvement
+</section>
+
+
+<div class="process" id="process">
+
+    <div class="process-inner">
+
+        <h2 class="section-title">How AnswerMitra Works</h2>
+
+        <p class="section-subtitle">
+            Practice → Analyse → Improve → Repeat
+        </p>
+
+        <div class="steps">
+
+            <div class="step">
+                <div class="step-number">1</div>
+                <h3>Upload</h3>
+                <p>
+                    Upload your handwritten answer as photographs or PDF.
+                </p>
+            </div>
+
+            <div class="step">
+                <div class="step-number">2</div>
+                <h3>Understand</h3>
+                <p>
+                    AI analyses handwriting, meaning, structure,
+                    arguments, examples and presentation.
+                </p>
+            </div>
+
+            <div class="step">
+                <div class="step-number">3</div>
+                <h3>Evaluate</h3>
+                <p>
+                    Receive detailed feedback, corrections,
+                    strengths, gaps and an estimated score.
+                </p>
+            </div>
+
+            <div class="step">
+                <div class="step-number">4</div>
+                <h3>Improve</h3>
+                <p>
+                    Learn from the evaluation and practise again
+                    with personalised guidance.
+                </p>
+            </div>
+
+        </div>
+
     </div>
 
-    <a class="start-button" href="evaluation.html">
-      Start Answer Evaluation
-      <span class="arrow">→</span>
-    </a>
+</div>
 
-    <div class="bottom-note">
-      Your ideas matter — not just keywords.
+
+<section id="resources">
+
+    <h2 class="section-title">UPSC & State PSC Preparation</h2>
+
+    <p class="section-subtitle">
+        AnswerMitra is being designed to support UPSC Civil Services,
+        State PSC examinations, GS, Essay, Optional subjects,
+        Prelims and Mains preparation.
+    </p>
+
+    <div class="cards">
+
+        <div class="card">
+            <h3>📚 UPSC Mains</h3>
+            <p>
+                GS Paper I, GS Paper II, GS Paper III,
+                GS Paper IV, Essay and Optional Subjects.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>🏛️ State PSC</h3>
+            <p>
+                State-specific examination structures,
+                papers, syllabus and evaluation frameworks.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>🌐 Multiple Languages</h3>
+            <p>
+                Interface language and answer language can be
+                handled separately for a more flexible learning experience.
+            </p>
+        </div>
+
     </div>
 
-  </section>
+</section>
+
+
+<section id="contact">
+
+    <h2 class="section-title">Build Better Answers</h2>
+
+    <p class="section-subtitle">
+        Every answer you write is an opportunity to understand,
+        analyse and improve.
+    </p>
+
+    <div style="text-align:center;">
+        <a href="evaluation.html" class="start-button">
+            Start Answer Evaluation →
+        </a>
+    </div>
+
+</section>
 
 </main>
 
+
 <footer>
-  AnswerMitra © 2026 — AI-assisted UPSC &amp; State PSC Answer Coaching
+
+    <p><strong>AnswerMitra</strong></p>
+
+    <p>
+        AI-Powered Answer Evaluation & Personalised Improvement
+    </p>
+
+    <p>
+        © 2026 AnswerMitra
+    </p>
+
 </footer>
 
 </body>
